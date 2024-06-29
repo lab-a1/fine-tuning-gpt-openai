@@ -64,7 +64,7 @@ from openai import OpenAI
 MODEL_ID = "<fine_tuned_model_id>"
 OPENAI_CLIENT = OpenAI()
 
-def classify_news(text: str) -> str:
+def classify_news(text: str) -> str | None:
     completion = OPENAI_CLIENT.chat.completions.create(
         model=MODEL_ID,
         messages=[
