@@ -22,3 +22,11 @@ Here is a documentation of the codebase.
 ### Transform the dataset
 
 First, the dataset is transformed into a format that can be used for fine-tuning the model. The [transform_dataset.py](./src/transform_dataset.py) script is used for this purpose. The script reads the CSV file and creates a JSON file that contains the training and validation datasets.
+
+Here is how you can run the script:
+
+```bash
+python src/transform_dataset.py
+```
+
+### Fine-tune the model
