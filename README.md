@@ -15,7 +15,7 @@ The example dataset only contains a few news articles. The CSV file is located [
 
 One example from the dataset will be used as a validation dataset, and the rest will be used for training. In a production environment, you should of course use a larger dataset. Check OpenAI's [fine-tuning guide](https://platform.openai.com/docs/guides/fine-tuning/preparing-your-dataset) for more information.
 
-## Codebase
+## Fine-tuning
 
 Here is a documentation of the codebase.
 
@@ -53,3 +53,37 @@ Fine tuning completed. Model: <fine_tuned_model_id>
 In OpenAI's dashboard, the fine-tuned model you can see more details about the fine-tuned model, as shown below:
 
 [![Fine-tuned model](./doc/fine-tuned-model.png)](./doc/fine-tuned-model.png)
+
+## Usage
+
+Once the model is fine-tuned, you can use it to classify news articles as important or not important. The following code shows how you can use the fine-tuned model to classify news articles:
+
+```python
+from openai import OpenAI
+
+MODEL_ID = "<fine_tuned_model_id>"
+OPENAI_CLIENT = OpenAI()
+
+def classify_news(text: str) -> str:
+    completion = OPENAI_CLIENT.chat.completions.create(
+        model=MODEL_ID,
+        messages=[
+            {
+                "role": "system",
+                "content": "You are a system that understands news that are important. If the news is important, classify it as 'important'. Otherwise, classify it as 'not important'. To classify the news, you should consider the core of the news, or what it really means. You should not use other classifications. Otherwise, the answer will be considered invalid.",
+            },
+            {"role": "user", "content": text},
+        ],
+    )
+    return completion.choices[0].message.content
+```
+
+You can use the `classify_news` function to classify news articles. Here is an example:
+
+```python
+text = "The COVID-19 pandemic has caused a lot of deaths and economic losses."
+classification = classify_news(text)
+print(classification)
+```
+
+The output should be `important` or `not important`. Make sure the provided prompt is clear and concise for your use case. If the prompt is not clear, the model might not give the correct classification or might give an answer that includes more information than needed.
