@@ -13,7 +13,7 @@ The example dataset only contains a few news articles. The CSV file is located [
 - `journal`: The journal that published the news article.
 - `important`: The label of the news article. It is `1` if the news article is important and `0` otherwise.
 
-One example from the dataset will be used as a validation dataset, and the rest will be used for training. In a production environment, you should of course use a larger dataset. Check OpenAI's [fine-tuning guide](https://platform.openai.com/docs/guides/fine-tuning/preparing-your-dataset) for more information.
+One example from the dataset will be used as a validation dataset, and the rest will be used for training. In a production environment, you should use a larger dataset. Check OpenAI's [fine-tuning guide](https://platform.openai.com/docs/guides/fine-tuning/preparing-your-dataset) for more information.
 
 ## Fine-tuning
 
