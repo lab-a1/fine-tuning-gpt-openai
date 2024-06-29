@@ -30,3 +30,26 @@ python src/transform_dataset.py
 ```
 
 ### Fine-tune the model
+
+The script [fine_tune.py](./src/fine_tune.py) fine-tunes the model on the transformed dataset. The script uses the `gpt-3.5-turbo` model from OpenAI's API.
+
+Here is how you can run the script:
+
+```bash
+python src/fine_tune.py
+```
+
+The script outputs should look like this:
+
+```text
+Train file: <file_id>
+Validation file: <file_id>
+Job status: validating_files
+Job status: running
+Job status: running
+Fine tuning completed. Model: <fine_tuned_model_id>
+```
+
+In OpenAI's dashboard, the fine-tuned model you can see more details about the fine-tuned model, as shown below:
+
+[![Fine-tuned model](./doc/fine-tuned-model.png)](./doc/fine-tuned-model.png)
